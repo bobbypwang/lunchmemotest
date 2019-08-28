@@ -1,12 +1,4 @@
 const lunchmemoAPI = new APIHandler(`http://localhost:3000`)
-var currentPage = "registration"
-
-var lmRunRegistration = function() {
-    clearInterval(appInterval)
-    currentPage = "registration"
-    $('.container.app-host-lunch, .container.groups-wrapper, header').addClass('hide')
-    $('.container.register-login').removeClass('hide').removeClass('fadeOut').addClass('animated fadeIn faster')
-}
 
 $(document).ready(() => {
 
@@ -19,7 +11,10 @@ $(document).ready(() => {
             password: $("#register-password").val()
         }
 
-        lunchmemoAPI.createUser (userData)
+        lunchmemoAPI.createOneRegister(userData)
+            .then(res => {
+                $(".register").addClass("animated fadeOut faster")
+            })
     }
 
     document.getElementById("fp-login").onsubmit = async function(e) {
@@ -31,7 +26,9 @@ $(document).ready(() => {
         }
 
         lunchmemoAPI.userLogin(userData)
-            .then(res => {})
+            .then(res => {
+                console.log(res)
+            })
             .catch(err => {
                 console.log(err)
                 $(".error").text("User not found. Please try again.")

@@ -14,30 +14,7 @@ class APIHandler {
             })
     }
 
-    getUserById(_id) {
-        return axios.get(`${this.API_BASE_URL}/users/${_id}`)
-            .then(res => {
-                return res.data
-            })
-            .catch(e => {
-                console.log(e)
-                return e
-            })
-    }
-
-
-    getGroupById(_id) {
-        return axios.get(`${this.API_BASE_URL}/groups/${_id}`)
-            .then(res => {
-                return res.data
-            })
-            .catch(e => {
-                console.log(e)
-                return e
-            })
-    }
-
-    createUser(userData) {
+    createOneRegister(userData) {
         return axios.post(`${this.API_BASE_URL}/users/`, userData)
             .then(res => {
                 console.log(userData)
@@ -45,41 +22,6 @@ class APIHandler {
                 window.me = res.data.user.id
                 lmRunApp()
                 return res
-            })
-    }
-
-    deleteGroup(groupIndex) {
-        return axios.delete(`${this.API_BASE_URL}/groups/${groupIndex}`)
-            .then(res => {
-                console.log(`Delete group ${groupIndex}`)
-            })
-            .catch(e => {
-                console.log(e)
-                return e
-            })
-    }
-
-    createGroup(groupData) {
-        return axios.post(`${this.API_BASE_URL}/groups/`, groupData)
-            .then(res => {
-                console.log(`Created group ${res.data.group}`)
-                return res.data.group
-            })
-            .catch(e => {
-                console.log(e)
-                return e
-            })
-    }
-
-    updateGroup(groupData) {
-        return axios.patch(`${this.API_BASE_URL}/groups/`, groupData)
-            .then(res => {
-                console.log(`Updated group ${res.data.group}`)
-                return res.data.group
-            })
-            .catch(e => {
-                console.log(e)
-                return e
             })
     }
 
@@ -91,11 +33,9 @@ class APIHandler {
                 return res
             })
             .catch(err => {
-                console.log(err)
                 return err
             })
     }
-
     updateOneRegister(userData) {
         return axios.patch(`${this.API_BASE_URL}/users`, { user: userData })
             .then(res => {
