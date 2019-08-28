@@ -11,7 +11,7 @@ $(document).ready(() => {
             password: $("#register-password").val()
         }
 
-        lunchmemoAPI.createOneRegister(userData)
+        lunchmemoAPI.createUser(userData)
     }
 
     document.getElementById("fp-login").onsubmit = async function(e) {
